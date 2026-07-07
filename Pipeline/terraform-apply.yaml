@@ -69,5 +69,5 @@ stages:
               environmentServiceNameAzureRM: pipeline-svc
 
               workingDirectory: Environment/QA
-              commandOptions: "-out=tfplan"
+              commandOptions: "$(Pipeline.Workspace)/tfplan/tfplan"
                 
