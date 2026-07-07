@@ -69,3 +69,4 @@ stages:
               environmentServiceNameAzureRM: pipeline-svc
 
               workingDirectory: Environment/QA
+              commandOptions: "-var-file=terraform.tfvars -out=tfplan"
