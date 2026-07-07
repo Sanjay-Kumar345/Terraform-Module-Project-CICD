@@ -1,12 +1,12 @@
 trigger:
- -main
-pool: pipeline-agent
+- main
+
+pool:
+  name: pipeline-agent
 
 variables:
- -group: Terraform-QA
+- group: Terraform-QA
 
 stages:
- 
- -template: Pipeline/terraform-plan.yaml
-
- -template: Pipeline/terraform-apply.yaml
+- template: Pipeline/terraform-plan.yaml
+- template: Pipeline/terraform-apply.yaml
