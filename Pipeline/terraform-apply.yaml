@@ -66,6 +66,6 @@ stages:
 
               commandOptions: tfplan
 
-              environmentServiceNameAzureRM: SC-Azure-QA
+              environmentServiceNameAzureRM: pipeline-svc
 
               workingDirectory: Environment/QA
