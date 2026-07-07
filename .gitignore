@@ -1,6 +1,6 @@
 # Terraform cache
 .terraform/
-**/.terraform/*
+
 
 # Terraform state files
 *.tfstate
@@ -21,7 +21,7 @@ override.tf.json
 
 # Variable files containing secrets
 *.auto.tfvars
-terraform.tfvars
+
 
 # Plan files
 *.tfplan
