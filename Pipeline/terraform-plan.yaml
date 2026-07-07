@@ -64,9 +64,8 @@ stages:
        
         workingDirectory: Environment/QA
         environmentServiceNameAzureRM: pipeline-svc
-        commandOptions: 
-         -out=tfplan
-         -var-file=terraform.tfvars
+        commandOptions: "-out=tfplan"
+         
 
     - task: PublishPipelineArtifact@1
       inputs:
