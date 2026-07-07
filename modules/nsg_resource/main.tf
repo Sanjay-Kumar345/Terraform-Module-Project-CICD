@@ -1,10 +1,10 @@
 resource "azurerm_network_security_group" "nsg" {
-    for_each = var.nsg_name
-    name = each.value.name
-    location = each.value.location
-    resource_group_name = var.resource_group_name
-    #Allow SSH
-   security_rule  {
+  for_each            = var.nsg_name
+  name                = each.value.name
+  location            = each.value.location
+  resource_group_name = var.resource_group_name
+  #Allow SSH
+  security_rule {
     name                       = "Allow-SSH"
     priority                   = 100
     direction                  = "Inbound"
@@ -14,8 +14,8 @@ resource "azurerm_network_security_group" "nsg" {
     destination_port_range     = "22"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
-   }
+  }
 
 
-  
+
 }

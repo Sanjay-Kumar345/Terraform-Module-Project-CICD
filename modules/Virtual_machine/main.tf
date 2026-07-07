@@ -1,12 +1,12 @@
 resource "azurerm_virtual_machine" "vm" {
-    for_each = var.vm_name
-    name = each.value.name
-    location = each.value.location
-    resource_group_name = each.value.resource_group_name
-    network_interface_ids = [var.nic_id[each.key]]
-    vm_size = each.value.vm_size
+  for_each              = var.vm_name
+  name                  = each.value.name
+  location              = each.value.location
+  resource_group_name   = each.value.resource_group_name
+  network_interface_ids = [var.nic_id[each.key]]
+  vm_size               = each.value.vm_size
 
-    storage_image_reference {
+  storage_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
     sku       = "22_04-lts"
@@ -30,4 +30,4 @@ resource "azurerm_virtual_machine" "vm" {
     environment = "staging"
   }
 }
-  
+

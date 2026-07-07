@@ -1,5 +1,5 @@
 variable "bastion_name" {
-  
+
 }
 variable "subnet_id" {
 }
