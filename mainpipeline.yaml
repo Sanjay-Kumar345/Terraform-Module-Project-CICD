@@ -5,7 +5,16 @@ pool:
   name: pipeline-agent
 
 variables:
-- group: Terraform-QA
+  backendServiceArm: pipeline-svc
+
+  backendAzureRmResourceGroupName: pipeline-rg
+
+  backendAzureRmStorageAccountName: pipelinestrg456
+
+
+  backendAzureRmContainerName: pipeline-container
+
+  backendAzureRmKey: QA.tfstate
 
 stages:
 - template: Pipeline/terraform-plan.yaml
