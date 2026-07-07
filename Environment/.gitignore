@@ -1,0 +1,43 @@
+# Terraform cache
+.terraform/
+**/.terraform/*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash log
+crash.log
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform lock file (Keep this if working in a team)
+# Uncomment the next line only if you don't want to version it
+# .terraform.lock.hcl
+
+# Variable files containing secrets
+*.auto.tfvars
+terraform.tfvars
+
+# Plan files
+*.tfplan
+*.plan
+
+# Sensitive files
+*.pem
+*.key
+*.pfx
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
