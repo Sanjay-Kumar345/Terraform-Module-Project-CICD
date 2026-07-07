@@ -1,0 +1,71 @@
+stages:
+
+- stage: TerraformPlan
+
+  displayName: Terraform Plan
+
+  jobs:
+
+  - job: Plan
+
+    displayName: Terraform Plan
+
+    pool: pipeline-agent
+      
+
+    steps:
+
+    - checkout: self
+
+    - task: TerraformInstaller@1
+      inputs:
+        terraformVersion: latest
+
+    - task: TerraformTaskV4@4
+      displayName: Terraform Init
+
+      inputs:
+
+        provider: azurerm
+
+        command: init
+
+        backendServiceArm: pipeline-svc
+
+        backendAzureRmResourceGroupName: pipeline-rg
+
+        backendAzureRmStorageAccountName: pipelinestrg456
+
+
+        backendAzureRmContainerName: pipeline-container
+
+        backendAzureRmKey: module.tfstate
+
+        workingDirectory: Environment/QA
+
+    - script: terraform fmt -check -recursive
+      workingDirectory: Environment/QA
+      displayName: Terraform Format
+
+    - task: TerraformTaskV4@4
+      displayName: Terraform Validate
+
+      inputs:
+        provider: azurerm
+        command: validate
+        workingDirectory: Environment/QA
+
+    - task: TerraformTaskV4@4
+      displayName: Terraform Plan
+
+      inputs:
+        provider: azurerm
+        command: plan
+        commandOptions: "-out=tfplan"
+        workingDirectory: Environment/QA
+        environmentServiceNameAzureRM: SC-Azure-QA
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: Environment/QA/tfplan
+        artifact: tfplan

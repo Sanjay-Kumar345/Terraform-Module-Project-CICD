@@ -1,0 +1,71 @@
+stages:
+
+- stage: TerraformApply
+
+  displayName: Terraform Apply
+
+  dependsOn: TerraformPlan
+
+  jobs:
+
+  - deployment: Apply
+
+    environment: QA
+
+    strategy:
+
+      runOnce:
+
+        deploy:
+
+          steps:
+
+          - checkout: self
+
+          - download: current
+
+            artifact: tfplan
+
+          - task: TerraformInstaller@1
+
+            inputs:
+
+              terraformVersion: latest
+
+          - task: TerraformTaskV4@4
+
+            displayName: Terraform Init
+
+            inputs:
+
+              provider: azurerm
+
+              command: init
+
+              backendServiceArm: pipeline-svc
+
+              backendAzureRmResourceGroupName: pipeline-rg
+
+              backendAzureRmStorageAccountName: pipelinestrg456
+
+              backendAzureRmContainerName: pipeline-container
+
+              backendAzureRmKey: module.tfstate
+
+              workingDirectory: Environment/QA
+
+          - task: TerraformTaskV4@4
+
+            displayName: Terraform Apply
+
+            inputs:
+
+              provider: azurerm
+
+              command: apply
+
+              commandOptions: tfplan
+
+              environmentServiceNameAzureRM: SC-Azure-QA
+
+              workingDirectory: Environment/QA
